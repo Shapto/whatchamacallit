@@ -13,41 +13,63 @@ namespace Lab5.Exercises.Register
             string[] Lines = File.ReadAllLines(fileName, Encoding.UTF8);
             foreach (string line in Lines)
             {
-                string[] Values = line.Split(';');
-                int id = int.Parse(Values[0]);
-                string name = Values[1];
-                string breed = Values[2];
-                DateTime birthDate = DateTime.Parse(Values[3]);
+                string[] values = line.Split(';');
+                string type = values[0];
+                int id = int.Parse(values[1]);
+                string name = values[2];
+                string breed = values[3];
+                DateTime birthDate = DateTime.Parse(values[4]);
                 Gender gender;
-                Enum.TryParse(Values[4], out gender);// tries to convert value to enum
-                Dog dog = new Dog(id, name, breed, birthDate, gender);
-                if (!Animals.Contains(dog))
+                Enum.TryParse(values[5], out gender);// tries to convert value to enum
+                switch(type)
                 {
-                    Animals.Add(dog);
+                    case "DOG":
+                        bool aggressive = bool.Parse(values[6]);
+                        Dog dog = new Dog(id, name, breed, birthDate, gender, aggressive);
+                        Animals.Add(dog);
+                        break;
+                    case "CAT":
+                        Cat cat = new Cat(id, name, breed, birthDate, gender);
+                        Animals.Add(cat);
+                        break;
+                    default:
+                        break;//unknown type
+
                 }
             } 
             return Animals;
         }
         public static AnimalRegister ReadDogsRegister(string fileName)
         {
-            AnimalRegister Dogs = new AnimalRegister();
+            AnimalRegister Animals = new AnimalRegister();
             string[] Lines = File.ReadAllLines(fileName, Encoding.UTF8);
             foreach (string line in Lines)
             {
-                string[] Values = line.Split(';');
-                int id = int.Parse(Values[0]);
-                string name = Values[1];
-                string breed = Values[2];
-                DateTime birthDate = DateTime.Parse(Values[3]);
+                string[] values = line.Split(';');
+                string type = values[0];
+                int id = int.Parse(values[1]);
+                string name = values[2];
+                string breed = values[3];
+                DateTime birthDate = DateTime.Parse(values[4]);
                 Gender gender;
-                Enum.TryParse(Values[4], out gender);// tries to convert value to enum
-                Dog dog = new Dog(id, name, breed, birthDate, gender);
-                if (!Dogs.Contains(dog))
+                Enum.TryParse(values[5], out gender);// tries to convert value to enum
+                switch (type)
                 {
-                    Dogs.Add(dog);
+                    case "DOG":
+                        bool aggressive = bool.Parse(values[6]);
+                        Dog dog = new Dog(id, name, breed, birthDate, gender, aggressive);
+                        Animals.Add(dog);
+                        break;
+                    case "CAT":
+                        Cat cat = new Cat(id, name, breed, birthDate, gender);
+                        Animals.Add(cat);
+                        break;
+                    default:
+                        break;//unknown type
+
                 }
             }
-            return Dogs;
+            return Animals;
         }
         public static List<Vaccination> ReadVaccinations(string fileName)
         {
@@ -72,7 +94,7 @@ namespace Lab5.Exercises.Register
             Console.WriteLine(new string('-', 74));
             for (int i = 0; i < dogs.Count; i++)
             {
-                Dog dog = dogs.Get(i);
+                Animal dog = dogs.Get(i);
                 Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-12:yyyy-MM-dd} | {4,-8} |", dog.ID, dog.Name, dog.Breed, dog.birthDate, dog.Gender);
             }
             Console.WriteLine(new string('-', 74));
@@ -91,7 +113,7 @@ namespace Lab5.Exercises.Register
             Console.WriteLine(new string('-', 90));
             for (int i = 0; i < FilteredByVacc.Count; i++)
             {
-                Dog dog = FilteredByVacc.Get(i);
+                Animal dog = FilteredByVacc.Get(i);
                 Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} |", dog.ID, dog.Name, dog.Breed, dog.LastVaccinationDate, dog.Gender);
             }
             Console.WriteLine(new string('-', 90));
@@ -102,7 +124,7 @@ namespace Lab5.Exercises.Register
             lines[0] = String.Format("{0};{1};{2};{3};{4}", "Reg.Nr", "Vardas", "Veislė", "Gimimo data", "Lytis");
             for (int i = 0; i < dogs.Count; i++)
             {
-                Dog dog = dogs.Get(i);
+                Animal dog = dogs.Get(i);
                 lines[i + 1] = String.Format("{0};{1};{2};{3};{4}", dog.ID, dog.Name, dog.Breed, dog.birthDate, dog.Gender);
             }
             File.WriteAllLines(fileName, lines, Encoding.UTF8);

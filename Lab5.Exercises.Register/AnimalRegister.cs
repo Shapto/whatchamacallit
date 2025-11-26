@@ -14,19 +14,19 @@ namespace Lab5.Exercises.Register
         {
             AllDogs = new AnimalContainer();
         }
-        public AnimalRegister(List<Dog> Dogs)
+        public AnimalRegister(List<Animal> Dogs)
         {
             AllDogs = new AnimalContainer();
-            foreach (Dog dog in Dogs)
+            foreach (Animal dog in Dogs)
             {
                 this.AllDogs.Add(dog);
             }
         }
-        public bool Contains(Dog dog)
+        public bool Contains(Animal dog)
         {
             return AllDogs.Contains(dog);
         }
-        public void Add(Dog dog)
+        public void Add(Animal dog)
         {
             AllDogs.Add(dog);
         }
@@ -35,7 +35,7 @@ namespace Lab5.Exercises.Register
             return this.AllDogs.Count;
         }
 
-        public Dog ChooseByIndex(int index)
+        public Animal ChooseByIndex(int index)
         {
             return AllDogs.Get(index);
         }
@@ -45,7 +45,7 @@ namespace Lab5.Exercises.Register
             int count = 0;
             for (int i = 0; i < this.AllDogs.Count; i++)
             {
-                Dog dog = AllDogs.Get(i);
+                Animal dog = AllDogs.Get(i);
                 if (dog.Gender.Equals(gender))
                 {
                     count++;
@@ -67,18 +67,18 @@ namespace Lab5.Exercises.Register
         //        return oldest;
         //    }
         //}
-        public Dog FindOldestDog()
+        public Animal FindOldestDog()
         {
             return this.FindOldestDog(this.AllDogs);
         }
-        public Dog FindOldestDog(string breed)
+        public Animal FindOldestDog(string breed)
         {
             AnimalContainer Filtered = this.FilterByBreed(breed);
             return this.FindOldestDog(Filtered);
         }
-        private Dog FindOldestDog(AnimalContainer Dogs)
+        private Animal FindOldestDog(AnimalContainer Dogs)
         {
-            Dog oldest = Dogs.Get(0);
+            Animal oldest = Dogs.Get(0);
             for (int i = 1; i < Dogs.Count; i++)
             {
                 if (DateTime.Compare(oldest.birthDate, Dogs.Get(i).birthDate) > 0)
@@ -93,18 +93,18 @@ namespace Lab5.Exercises.Register
             List<string> Breeds = new List<string>();
             for (int i = 0; i < this.AllDogs.Count; i++)
             {
-                Dog dog = AllDogs.Get(i);
+                Animal dog = AllDogs.Get(i);
                 string breed = dog.Breed;
                 if (!Breeds.Contains(breed)) //uses list method contains
                     Breeds.Add(breed);
             }
             return Breeds;
        }
-        private Dog FindDogByID(int ID)
+        private Animal FindDogByID(int ID)
         {
             for (int i = 0; i < this.AllDogs.Count; i++)
             {
-                Dog dog = AllDogs.Get(i);
+                Animal dog = AllDogs.Get(i);
                 if (dog.ID == ID)
                 {
                     return dog;
@@ -116,7 +116,7 @@ namespace Lab5.Exercises.Register
         {
             foreach (Vaccination vaccination in Vaccinations)
             {
-                Dog dog = this.FindDogByID(vaccination.DogID);
+                Animal dog = this.FindDogByID(vaccination.DogID);
                 if (dog != null && vaccination > dog.LastVaccinationDate)
                 {
                     dog.LastVaccinationDate = vaccination.Date;
@@ -129,7 +129,7 @@ namespace Lab5.Exercises.Register
             for (int i = 0; i < this.AllDogs.Count; i++)
             {
                 int index = 0;
-                Dog dog = AllDogs.Get(i);
+                Animal dog = AllDogs.Get(i);
                 if (dog.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
                 {
                     Filtered.Add(dog);
@@ -144,7 +144,7 @@ namespace Lab5.Exercises.Register
             for (int i = 0; i < this.AllDogs.Count; i++)
             {
                 int index = 0;
-                Dog dog = AllDogs.Get(i);
+                Animal dog = AllDogs.Get(i);
                 if (dog.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
                 {
                     Filtered.Add(dog);
@@ -159,7 +159,7 @@ namespace Lab5.Exercises.Register
             DateTime temp = DateTime.MinValue;
             for (int i = 0; i < this.AllDogs.Count; i++)
             {
-                Dog dog = AllDogs.Get(i);
+                Animal dog = AllDogs.Get(i);
                 if (dog.LastVaccinationDate != dog.LastVaccinationDate.AddYears(1))
                 {
                     FilteredByVacc.Add(dog);
