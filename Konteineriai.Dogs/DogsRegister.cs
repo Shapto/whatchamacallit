@@ -9,14 +9,14 @@ namespace Konteineriai.Dogs
 {
     class DogsRegister
     {
-        private List<Dog> AllDogs;
+        private DogsContainer AllDogs;
         public DogsRegister()
         {
-            AllDogs = new List<Dog>();
+            AllDogs = new DogsContainer();
         }
         public DogsRegister(List<Dog> Dogs)
         {
-            AllDogs = new List<Dog>();
+            AllDogs = new DogsContainer();
             foreach (Dog dog in Dogs)
             {
                 this.AllDogs.Add(dog);
@@ -37,14 +37,15 @@ namespace Konteineriai.Dogs
 
         public Dog ChooseByIndex(int index)
         {
-            return AllDogs[index];
+            return AllDogs.Get(index);
         }
 
         public int CountByGender(Gender gender)
         {
             int count = 0;
-            foreach (Dog dog in this.AllDogs)
+            for (int i = 0; i < this.AllDogs.Count; i++)
             {
+                Dog dog = AllDogs.Get(i);
                 if (dog.Gender.Equals(gender))
                 {
                     count++;
@@ -72,17 +73,17 @@ namespace Konteineriai.Dogs
         }
         public Dog FindOldestDog(string breed)
         {
-            List<Dog> Filtered = this.FilterByBreed(breed);
+            DogsContainer Filtered = this.FilterByBreed(breed);
             return this.FindOldestDog(Filtered);
         }
-        private Dog FindOldestDog(List<Dog> Dogs)
+        private Dog FindOldestDog(DogsContainer Dogs)
         {
-            Dog oldest = Dogs[0];
+            Dog oldest = Dogs.Get(0);
             for (int i = 1; i < Dogs.Count; i++)
             {
-                if (DateTime.Compare(oldest.birthDate, Dogs[i].birthDate) > 0)
+                if (DateTime.Compare(oldest.birthDate, Dogs.Get(i).birthDate) > 0)
                 {
-                    oldest = Dogs[i];
+                    oldest = Dogs.Get(i);
                 }
             }
             return oldest;
@@ -90,8 +91,9 @@ namespace Konteineriai.Dogs
        public List<string> FindBreeds()
        {
             List<string> Breeds = new List<string>();
-            foreach (Dog dog in this.AllDogs)
+            for (int i = 0; i < this.AllDogs.Count; i++)
             {
+                Dog dog = AllDogs.Get(i);
                 string breed = dog.Breed;
                 if (!Breeds.Contains(breed)) //uses list method contains
                     Breeds.Add(breed);
@@ -100,8 +102,9 @@ namespace Konteineriai.Dogs
        }
         private Dog FindDogByID(int ID)
         {
-            foreach (Dog dog in this.AllDogs)
+            for (int i = 0; i < this.AllDogs.Count; i++)
             {
+                Dog dog = AllDogs.Get(i);
                 if (dog.ID == ID)
                 {
                     return dog;
@@ -120,12 +123,13 @@ namespace Konteineriai.Dogs
                 }
             }
         }
-        public List<Dog> FilterByBreed(string selectedBreed)
+        public DogsContainer FilterByBreed(string selectedBreed)
         {
-            List<Dog> Filtered = new List<Dog>();
-            foreach (Dog dog in this.AllDogs)
+            DogsContainer Filtered = new DogsContainer();
+            for (int i = 0; i < this.AllDogs.Count; i++)
             {
                 int index = 0;
+                Dog dog = AllDogs.Get(i);
                 if (dog.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
                 {
                     Filtered.Add(dog);
@@ -134,12 +138,13 @@ namespace Konteineriai.Dogs
             }
             return Filtered;
         }
-        public DogsRegister FilterByBreeds(string selectedBreed)
+        public DogsContainer FilterByBreeds(string selectedBreed)
         {
-            DogsRegister Filtered = new DogsRegister();
-            foreach (Dog dog in this.AllDogs)
+            DogsContainer Filtered = new DogsContainer();
+            for (int i = 0; i < this.AllDogs.Count; i++)
             {
                 int index = 0;
+                Dog dog = AllDogs.Get(i);
                 if (dog.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
                 {
                     Filtered.Add(dog);
@@ -148,12 +153,13 @@ namespace Konteineriai.Dogs
             }
            return Filtered;
         }
-        public DogsRegister FilterByVaccinationExpired()
+        public DogsContainer FilterByVaccinationExpired()
         {
-            DogsRegister FilteredByVacc = new DogsRegister();
+            DogsContainer FilteredByVacc = new DogsContainer();
             DateTime temp = DateTime.MinValue;
-            foreach(Dog dog in this.AllDogs)
+            for (int i = 0; i < this.AllDogs.Count; i++)
             {
+                Dog dog = AllDogs.Get(i);
                 if (dog.LastVaccinationDate != dog.LastVaccinationDate.AddYears(1))
                 {
                     FilteredByVacc.Add(dog);

@@ -28,6 +28,27 @@ namespace Konteineriai.Dogs
             } 
             return Dogs;
         }
+        public static DogsRegister ReadDogsRegister(string fileName)
+        {
+            DogsRegister Dogs = new DogsRegister();
+            string[] Lines = File.ReadAllLines(fileName, Encoding.UTF8);
+            foreach (string line in Lines)
+            {
+                string[] Values = line.Split(';');
+                int id = int.Parse(Values[0]);
+                string name = Values[1];
+                string breed = Values[2];
+                DateTime birthDate = DateTime.Parse(Values[3]);
+                Gender gender;
+                Enum.TryParse(Values[4], out gender);// tries to convert value to enum
+                Dog dog = new Dog(id, name, breed, birthDate, gender);
+                if (!Dogs.Contains(dog))
+                {
+                    Dogs.Add(dog);
+                }
+            }
+            return Dogs;
+        }
         public static List<Vaccination> ReadVaccinations(string fileName)
         {
             List<Vaccination> Vaccinations = new List<Vaccination>();
@@ -65,15 +86,15 @@ namespace Konteineriai.Dogs
         }
         public static void PrintExpOrUnvaccinatedDogs(DogsContainer FilteredByVacc)
         {
-            Console.WriteLine(new string('-', 80));
-            Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} | {5,-20} |", "Reg.Nr", "Vardas", "Veislė", "Pask. Skiepo data", "Lytis", "Skiepo galiojimas");
-            Console.WriteLine(new string('-', 80));
+            Console.WriteLine(new string('-', 90));
+            Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} |", "Reg.Nr", "Vardas", "Veislė", "Pask. Skiepo data", "Lytis");
+            Console.WriteLine(new string('-', 90));
             for (int i = 0; i < FilteredByVacc.Count; i++)
             {
                 Dog dog = FilteredByVacc.Get(i);
-                Console.Write("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} |", dog.ID, dog.Name, dog.Breed, dog.LastVaccinationDate, dog.Gender);
+                Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} |", dog.ID, dog.Name, dog.Breed, dog.LastVaccinationDate, dog.Gender);
             }
-            Console.WriteLine(new string('-', 80));
+            Console.WriteLine(new string('-', 90));
         }
         public static void PrintDogsToCSVFile(string fileName, DogsContainer dogs)
         {

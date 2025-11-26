@@ -4,6 +4,7 @@ using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Konteineriai.Dogs
 {
@@ -23,6 +24,14 @@ namespace Konteineriai.Dogs
             this.Breed = breed;
             this.birthDate = birthDate;
             this.Gender = gender;
+        }
+        public Dog(Dog other)
+        {
+            this.ID = other.ID;
+            this.Name = other.Name;
+            this.Breed = other.Breed;
+            this.birthDate = other.birthDate;
+            this.Gender = other.Gender;
         }
         public override bool Equals(object other)
         {
@@ -53,6 +62,15 @@ namespace Konteineriai.Dogs
                     age--;
                 return age;
             }
+        }
+        public int CompareTo(Dog other)
+        {
+            int gender = this.Gender.CompareTo(other.Gender);
+            if (gender != 1)
+            {
+                return gender;
+            }
+            return this.Breed.CompareTo(other.Breed);
         }
     }
 }
