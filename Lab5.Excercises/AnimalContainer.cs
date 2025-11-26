@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace Lab5.Exercises.Register
 {
-    class DogsContainer
+    class AnimalContainer
     {
         private Dog[]dogs;
 
         public int Count { get; private set; }
 
         private int Capacity;
-        public DogsContainer()
+        public AnimalContainer()
         {
             this.dogs = new Dog[16];//default capacity
         }
 
-        public DogsContainer(int capacity = 16)//default size
+        public AnimalContainer(int capacity = 16)//default size
         {
             this.Capacity = capacity;
             this.dogs = new Dog[capacity];
         }
 
-        public DogsContainer(DogsContainer container) : this()
+        public AnimalContainer(AnimalContainer container) : this()
         {
             for (int i = 0; i < container.Count; i++)
             {

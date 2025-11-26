@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Lab5.Exercises.Register
 {
-    class DogsRegister
+    class AnimalRegister
     {
-        private DogsContainer AllDogs;
-        public DogsRegister()
+        private AnimalContainer AllDogs;
+        public AnimalRegister()
         {
-            AllDogs = new DogsContainer();
+            AllDogs = new AnimalContainer();
         }
-        public DogsRegister(List<Dog> Dogs)
+        public AnimalRegister(List<Dog> Dogs)
         {
-            AllDogs = new DogsContainer();
+            AllDogs = new AnimalContainer();
             foreach (Dog dog in Dogs)
             {
                 this.AllDogs.Add(dog);
@@ -73,10 +73,10 @@ namespace Lab5.Exercises.Register
         }
         public Dog FindOldestDog(string breed)
         {
-            DogsContainer Filtered = this.FilterByBreed(breed);
+            AnimalContainer Filtered = this.FilterByBreed(breed);
             return this.FindOldestDog(Filtered);
         }
-        private Dog FindOldestDog(DogsContainer Dogs)
+        private Dog FindOldestDog(AnimalContainer Dogs)
         {
             Dog oldest = Dogs.Get(0);
             for (int i = 1; i < Dogs.Count; i++)
@@ -123,9 +123,9 @@ namespace Lab5.Exercises.Register
                 }
             }
         }
-        public DogsContainer FilterByBreed(string selectedBreed)
+        public AnimalContainer FilterByBreed(string selectedBreed)
         {
-            DogsContainer Filtered = new DogsContainer();
+            AnimalContainer Filtered = new AnimalContainer();
             for (int i = 0; i < this.AllDogs.Count; i++)
             {
                 int index = 0;
@@ -138,9 +138,9 @@ namespace Lab5.Exercises.Register
             }
             return Filtered;
         }
-        public DogsContainer FilterByBreeds(string selectedBreed)
+        public AnimalContainer FilterByBreeds(string selectedBreed)
         {
-            DogsContainer Filtered = new DogsContainer();
+            AnimalContainer Filtered = new AnimalContainer();
             for (int i = 0; i < this.AllDogs.Count; i++)
             {
                 int index = 0;
@@ -153,9 +153,9 @@ namespace Lab5.Exercises.Register
             }
            return Filtered;
         }
-        public DogsContainer FilterByVaccinationExpired()
+        public AnimalContainer FilterByVaccinationExpired()
         {
-            DogsContainer FilteredByVacc = new DogsContainer();
+            AnimalContainer FilteredByVacc = new AnimalContainer();
             DateTime temp = DateTime.MinValue;
             for (int i = 0; i < this.AllDogs.Count; i++)
             {

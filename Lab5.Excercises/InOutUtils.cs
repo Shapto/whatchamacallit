@@ -7,9 +7,9 @@ namespace Lab5.Exercises.Register
 {
     static class InOutUtils
     {
-        public static DogsContainer ReadDogs(string fileName)
+        public static AnimalContainer ReadAnimals(string fileName)
         {
-            DogsContainer Dogs = new DogsContainer();
+            AnimalContainer Animals = new AnimalContainer();
             string[] Lines = File.ReadAllLines(fileName, Encoding.UTF8);
             foreach (string line in Lines)
             {
@@ -21,16 +21,16 @@ namespace Lab5.Exercises.Register
                 Gender gender;
                 Enum.TryParse(Values[4], out gender);// tries to convert value to enum
                 Dog dog = new Dog(id, name, breed, birthDate, gender);
-                if (!Dogs.Contains(dog))
+                if (!Animals.Contains(dog))
                 {
-                    Dogs.Add(dog);
+                    Animals.Add(dog);
                 }
             } 
-            return Dogs;
+            return Animals;
         }
-        public static DogsRegister ReadDogsRegister(string fileName)
+        public static AnimalRegister ReadDogsRegister(string fileName)
         {
-            DogsRegister Dogs = new DogsRegister();
+            AnimalRegister Dogs = new AnimalRegister();
             string[] Lines = File.ReadAllLines(fileName, Encoding.UTF8);
             foreach (string line in Lines)
             {
@@ -63,7 +63,7 @@ namespace Lab5.Exercises.Register
             }
             return Vaccinations;
         }
-        public static void PrintDogs(string label, DogsContainer dogs)
+        public static void PrintAnimals(string label, AnimalContainer dogs)
         {
             Console.WriteLine(new string('-', 74));
             Console.WriteLine("| {0,-70} |", label);
@@ -84,7 +84,7 @@ namespace Lab5.Exercises.Register
                 Console.WriteLine(Breeds[i]);
             }
         }
-        public static void PrintExpOrUnvaccinatedDogs(DogsContainer FilteredByVacc)
+        public static void PrintExpOrUnvaccinatedDogs(AnimalContainer FilteredByVacc)
         {
             Console.WriteLine(new string('-', 90));
             Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} |", "Reg.Nr", "Vardas", "Veislė", "Pask. Skiepo data", "Lytis");
@@ -96,7 +96,7 @@ namespace Lab5.Exercises.Register
             }
             Console.WriteLine(new string('-', 90));
         }
-        public static void PrintDogsToCSVFile(string fileName, DogsContainer dogs)
+        public static void PrintAnimalsToCSVFile(string fileName, AnimalContainer dogs)
         {
             string[] lines = new string[dogs.Count + 1];
             lines[0] = String.Format("{0};{1};{2};{3};{4}", "Reg.Nr", "Vardas", "Veislė", "Gimimo data", "Lytis");
