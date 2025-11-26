@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Konteineriai.Dogs
+namespace Lab5.Exercises.Register
 {
     static class InOutUtils
     {

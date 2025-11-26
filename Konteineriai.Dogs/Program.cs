@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Konteineriai.Dogs
+namespace Lab5.Exercises.Register
 {
     internal class Program
     {

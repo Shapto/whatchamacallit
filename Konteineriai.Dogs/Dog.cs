@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Konteineriai.Dogs
+namespace Lab5.Exercises.Register
 {
     class Dog
     {

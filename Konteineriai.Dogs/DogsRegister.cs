@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Konteineriai.Dogs
+namespace Lab5.Exercises.Register
 {
     class DogsRegister
     {
