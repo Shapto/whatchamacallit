@@ -67,16 +67,16 @@ namespace Lab5.Exercises.Register
             }
             return count;
         }
-        public Animal FindOldestDog()
+        public Animal FindOldestAnimal()
         {
-            return this.FindOldestDog(this.AllAnimals);
+            return this.FindOldestAnimal(this.AllAnimals);
         }
-        public Animal FindOldestDog(string breed)
+        public Animal FindOldestAnimal(string breed)
         {
             AnimalContainer Filtered = this.FilterByBreed(breed);
-            return this.FindOldestDog(Filtered);
+            return this.FindOldestAnimal(Filtered);
         }
-        private Animal FindOldestDog(AnimalContainer Dogs)
+        private Animal FindOldestAnimal(AnimalContainer Dogs)
         {
             Animal oldest = Dogs.Get(0);
             for (int i = 1; i < Dogs.Count; i++)
@@ -100,7 +100,7 @@ namespace Lab5.Exercises.Register
             }
             return Breeds;
        }
-        private Animal FindDogByID(int ID)
+        private Animal FindAnimalByID(int ID)
         {
             for (int i = 0; i < this.AllAnimals.Count; i++)
             {
@@ -116,10 +116,10 @@ namespace Lab5.Exercises.Register
         {
             foreach (Vaccination vaccination in Vaccinations)
             {
-                Animal dog = this.FindDogByID(vaccination.DogID);
-                if (dog != null && vaccination > dog.LastVaccinationDate)
+                Animal animal = this.FindAnimalByID(vaccination.DogID);
+                if (animal != null && vaccination > animal.LastVaccinationDate)
                 {
-                    dog.LastVaccinationDate = vaccination.Date;
+                    animal.LastVaccinationDate = vaccination.Date;
                 }
             }
         }
@@ -129,10 +129,10 @@ namespace Lab5.Exercises.Register
             for (int i = 0; i < this.AllAnimals.Count; i++)
             {
                 int index = 0;
-                Animal dog = AllAnimals.Get(i);
-                if (dog.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
+                Animal animal = AllAnimals.Get(i);
+                if (animal.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
                 {
-                    Filtered.Add(dog);
+                    Filtered.Add(animal);
                 }
                 index++;
             }
@@ -144,10 +144,10 @@ namespace Lab5.Exercises.Register
             for (int i = 0; i < this.AllAnimals.Count; i++)
             {
                 int index = 0;
-                Animal dog = AllAnimals.Get(i);
-                if (dog.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
+                Animal animal = AllAnimals.Get(i);
+                if (animal.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
                 {
-                    Filtered.Add(dog);
+                    Filtered.Add(animal);
                 }
                 index++;
             }
@@ -159,10 +159,10 @@ namespace Lab5.Exercises.Register
             DateTime temp = DateTime.MinValue;
             for (int i = 0; i < this.AllAnimals.Count; i++)
             {
-                Animal dog = AllAnimals.Get(i);
-                if (dog.LastVaccinationDate != dog.LastVaccinationDate.AddYears(1))
+                Animal animal = AllAnimals.Get(i);
+                if (animal.LastVaccinationDate != animal.LastVaccinationDate.AddYears(1))
                 {
-                    FilteredByVacc.Add(dog);
+                    FilteredByVacc.Add(animal);
                 }
             }
             return FilteredByVacc;

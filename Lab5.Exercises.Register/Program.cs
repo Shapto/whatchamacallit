@@ -23,7 +23,7 @@ namespace Lab5.Exercises.Register
             Console.WriteLine("Iš viso šunų: {0}", allDogs.Count());
             Console.WriteLine("Patinų: {0}", allDogs.CountByGender(Gender.Male));
             Console.WriteLine("Patelių: {0}", allDogs.CountByGender(Gender.Female));
-            Animal oldest = allDogs.FindOldestDog();
+            Animal oldest = allDogs.FindOldestAnimal();
             Console.WriteLine("Seniausias šuo");
             Console.WriteLine("Vardas: {0}, Veislė: {1}, Amžius: {2}", oldest.Name, oldest.Breed, oldest.Age);
             AnimalContainer FilteredByVacc = allDogs.FilterByVaccinationExpired();
