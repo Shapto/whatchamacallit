@@ -46,13 +46,13 @@ namespace Lab5.Exercises.Register
             }
         }
 
-        public void Add(Animal dog)
+        public void Add(Animal animal)
         {
             if (this.Count == this.Capacity)//if container is full
             {
                 EnsureCapacity(this.Capacity * 2);
             }
-            this.animals[this.Count++] = dog;
+            this.animals[this.Count++] = animal;
         }
 
         public Animal Get(int index)
@@ -60,16 +60,16 @@ namespace Lab5.Exercises.Register
             return this.animals[index];
         }
 
-        public void Put(Animal dog, int index) //put element into specified spot
+        public void Put(Animal animal, int index) //put element into specified spot
         {
             if (index >= this.Capacity)//if container is full
             {
                 EnsureCapacity(this.Capacity * 2);
             }
-            this.animals[index] = dog;
+            this.animals[index] = animal;
         }
 
-        public void Insert(Animal dog, int index) //insert element into specified spot without overwriting
+        public void Insert(Animal animal, int index) //insert element into specified spot without overwriting
         {
             if (index >= this.Capacity)
             {
@@ -84,7 +84,7 @@ namespace Lab5.Exercises.Register
                 }
                 else if (i == index)
                 {
-                    temp[i] = dog;
+                    temp[i] = animal;
                 }
                 else
                 {
@@ -94,11 +94,11 @@ namespace Lab5.Exercises.Register
             this.animals = temp;
         }
 
-        public void Remove(Animal dog) //remove elements from container by criteria
+        public void Remove(Animal animal) //remove elements from container by criteria
         {
             for (int i = 0; i < this.Count - 1; i++)
             {
-                if (this.animals[i] == dog)
+                if (this.animals[i] == animal)
                 {
                     animals[i] = animals[i+1];
                 }
@@ -115,11 +115,11 @@ namespace Lab5.Exercises.Register
             Count--;
         }
 
-        public bool Contains(Animal dog)
+        public bool Contains(Animal animal)
         {
             for (int i = 0; i < this.Count; i++)
             {
-                if (this.animals[i].Equals(dog))
+                if (this.animals[i].Equals(animal))
                 {
                     return true;
                 }
