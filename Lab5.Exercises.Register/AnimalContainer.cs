@@ -126,8 +126,12 @@ namespace Lab5.Exercises.Register
             }
             return false;
         }
-
+        
         public void Sort()
+        {
+            Sort(new AnimalsComparator());
+        }
+        public void Sort(AnimalsComparator comparator)
         {
             bool flag = true;
             while (flag)
@@ -137,7 +141,7 @@ namespace Lab5.Exercises.Register
                 {
                     Animal a = this.animals[i];
                     Animal b = this.animals[i + 1];
-                    if (a.CompareTo(b) > 0)
+                    if (comparator.Compare(a,b) > 0)
                     {
                         this.animals[i] = b;
                         this.animals[i + 1] = a;

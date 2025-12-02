@@ -9,43 +9,43 @@ namespace Lab5.Exercises.Register
 {
     class AnimalRegister
     {
-        private AnimalContainer AllDogs;
+        private AnimalContainer AllAnimals;
         public AnimalRegister()
         {
-            AllDogs = new AnimalContainer();
+            AllAnimals = new AnimalContainer();
         }
         public AnimalRegister(List<Animal> Dogs)
         {
-            AllDogs = new AnimalContainer();
+            AllAnimals = new AnimalContainer();
             foreach (Animal dog in Dogs)
             {
-                this.AllDogs.Add(dog);
+                this.AllAnimals.Add(dog);
             }
         }
         public bool Contains(Animal dog)
         {
-            return AllDogs.Contains(dog);
+            return AllAnimals.Contains(dog);
         }
         public void Add(Animal dog)
         {
-            AllDogs.Add(dog);
+            AllAnimals.Add(dog);
         }
-        public int DogsCount()
+        public int Count()
         {
-            return this.AllDogs.Count;
+            return this.AllAnimals.Count;
         }
 
         public Animal ChooseByIndex(int index)
         {
-            return AllDogs.Get(index);
+            return AllAnimals.Get(index);
         }
 
         public int CountByGender(Gender gender)
         {
             int count = 0;
-            for (int i = 0; i < this.AllDogs.Count; i++)
+            for (int i = 0; i < this.AllAnimals.Count; i++)
             {
-                Animal dog = AllDogs.Get(i);
+                Animal dog = AllAnimals.Get(i);
                 if (dog.Gender.Equals(gender))
                 {
                     count++;
@@ -53,23 +53,23 @@ namespace Lab5.Exercises.Register
             }
             return count;
         }
-        //public Dog FindOldestDog()
-        //{
-        //    {
-        //        Dog oldest = this.ChooseByIndex(0); // means least value
-        //        for (int i = 1; i < DogsCount(); i++)
-        //        {
-        //            if (DateTime.Compare(this.ChooseByIndex(i).birthDate, this.ChooseByIndex(i).birthDate) < 0)
-        //            {
-        //                oldest = this.ChooseByIndex(i);
-        //            }
-        //       }
-        //        return oldest;
-        //    }
-        //}
+
+        public int CountAggresiveDogs()
+        {
+            int count = 0;
+            for (int i = 0; i < this.AllAnimals.Count; i++)
+            {
+                Animal animal = this.AllAnimals.Get(i);
+                if (animal is Dog && (animal as Dog).Aggresive)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
         public Animal FindOldestDog()
         {
-            return this.FindOldestDog(this.AllDogs);
+            return this.FindOldestDog(this.AllAnimals);
         }
         public Animal FindOldestDog(string breed)
         {
@@ -91,9 +91,9 @@ namespace Lab5.Exercises.Register
        public List<string> FindBreeds()
        {
             List<string> Breeds = new List<string>();
-            for (int i = 0; i < this.AllDogs.Count; i++)
+            for (int i = 0; i < this.AllAnimals.Count; i++)
             {
-                Animal dog = AllDogs.Get(i);
+                Animal dog = AllAnimals.Get(i);
                 string breed = dog.Breed;
                 if (!Breeds.Contains(breed)) //uses list method contains
                     Breeds.Add(breed);
@@ -102,9 +102,9 @@ namespace Lab5.Exercises.Register
        }
         private Animal FindDogByID(int ID)
         {
-            for (int i = 0; i < this.AllDogs.Count; i++)
+            for (int i = 0; i < this.AllAnimals.Count; i++)
             {
-                Animal dog = AllDogs.Get(i);
+                Animal dog = AllAnimals.Get(i);
                 if (dog.ID == ID)
                 {
                     return dog;
@@ -126,10 +126,10 @@ namespace Lab5.Exercises.Register
         public AnimalContainer FilterByBreed(string selectedBreed)
         {
             AnimalContainer Filtered = new AnimalContainer();
-            for (int i = 0; i < this.AllDogs.Count; i++)
+            for (int i = 0; i < this.AllAnimals.Count; i++)
             {
                 int index = 0;
-                Animal dog = AllDogs.Get(i);
+                Animal dog = AllAnimals.Get(i);
                 if (dog.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
                 {
                     Filtered.Add(dog);
@@ -141,10 +141,10 @@ namespace Lab5.Exercises.Register
         public AnimalContainer FilterByBreeds(string selectedBreed)
         {
             AnimalContainer Filtered = new AnimalContainer();
-            for (int i = 0; i < this.AllDogs.Count; i++)
+            for (int i = 0; i < this.AllAnimals.Count; i++)
             {
                 int index = 0;
-                Animal dog = AllDogs.Get(i);
+                Animal dog = AllAnimals.Get(i);
                 if (dog.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
                 {
                     Filtered.Add(dog);
@@ -157,15 +157,23 @@ namespace Lab5.Exercises.Register
         {
             AnimalContainer FilteredByVacc = new AnimalContainer();
             DateTime temp = DateTime.MinValue;
-            for (int i = 0; i < this.AllDogs.Count; i++)
+            for (int i = 0; i < this.AllAnimals.Count; i++)
             {
-                Animal dog = AllDogs.Get(i);
+                Animal dog = AllAnimals.Get(i);
                 if (dog.LastVaccinationDate != dog.LastVaccinationDate.AddYears(1))
                 {
                     FilteredByVacc.Add(dog);
                 }
             }
             return FilteredByVacc;
+        }
+        public void Sort()
+        {
+            Sort(new AnimalsComparator());
+        }
+        public void Sort(AnimalsComparator comparator)
+        {
+            AllAnimals.Sort(comparator);
         }
     }
 }

@@ -52,6 +52,9 @@ namespace Lab5.Exercises.Register
             }
             return result;
         }
-
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

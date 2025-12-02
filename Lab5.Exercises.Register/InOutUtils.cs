@@ -2,43 +2,44 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Lab5.Exercises.Register
 {
     static class InOutUtils
     {
-        public static AnimalContainer ReadAnimals(string fileName)
-        {
-            AnimalContainer Animals = new AnimalContainer();
-            string[] Lines = File.ReadAllLines(fileName, Encoding.UTF8);
-            foreach (string line in Lines)
-            {
-                string[] values = line.Split(';');
-                string type = values[0];
-                int id = int.Parse(values[1]);
-                string name = values[2];
-                string breed = values[3];
-                DateTime birthDate = DateTime.Parse(values[4]);
-                Gender gender;
-                Enum.TryParse(values[5], out gender);// tries to convert value to enum
-                switch(type)
-                {
-                    case "DOG":
-                        bool aggressive = bool.Parse(values[6]);
-                        Dog dog = new Dog(id, name, breed, birthDate, gender, aggressive);
-                        Animals.Add(dog);
-                        break;
-                    case "CAT":
-                        Cat cat = new Cat(id, name, breed, birthDate, gender);
-                        Animals.Add(cat);
-                        break;
-                    default:
-                        break;//unknown type
+        //public static AnimalContainer ReadAnimals(string fileName)
+        //{
+        //    AnimalContainer Animals = new AnimalContainer();
+        //    string[] Lines = File.ReadAllLines(fileName, Encoding.UTF8);
+        //    foreach (string line in Lines)
+        //    {
+        //        string[] values = line.Split(';');
+        //        string type = values[0];
+        //        int id = int.Parse(values[1]);
+        //        string name = values[2];
+        //        string breed = values[3];
+        //        DateTime birthDate = DateTime.Parse(values[4]);
+        //        Gender gender;
+        //        Enum.TryParse(values[5], out gender);// tries to convert value to enum
+        //        switch(type)
+        //        {
+        //            case "DOG":
+        //                bool aggressive = bool.Parse(values[6]);
+        //                Dog dog = new Dog(id, name, breed, birthDate, gender, aggressive);
+        //                Animals.Add(dog);
+        //                break;
+        //            case "CAT":
+        //                Cat cat = new Cat(id, name, breed, birthDate, gender);
+        //                Animals.Add(cat);
+        //                break;
+        //            default:
+        //                break;//unknown type
 
-                }
-            } 
-            return Animals;
-        }
+        //        }
+        //    } 
+        //    return Animals;
+        //}
         public static AnimalRegister ReadDogsRegister(string fileName)
         {
             AnimalRegister Animals = new AnimalRegister();
@@ -85,17 +86,17 @@ namespace Lab5.Exercises.Register
             }
             return Vaccinations;
         }
-        public static void PrintAnimals(string label, AnimalContainer dogs)
+        public static void PrintAnimals(string label, AnimalRegister animals)
         {
             Console.WriteLine(new string('-', 74));
             Console.WriteLine("| {0,-70} |", label);
             Console.WriteLine(new string('-', 74));
-            Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-12:yyyy-MM-dd} | {4,-8} |", "Reg.Nr", "Vardas", "Veislė", "Gimimo data", "Lytis");
+            Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-12:yyyy-MM-dd} | {4,-8} | {5,-8} |", "Reg.Nr", "Vardas", "Veislė", "Gimimo data", "Lytis", "Agress.?");
             Console.WriteLine(new string('-', 74));
-            for (int i = 0; i < dogs.Count; i++)
+            for (int i = 0; i < animals.Count(); i++)
             {
-                Animal dog = dogs.Get(i);
-                Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-12:yyyy-MM-dd} | {4,-8} |", dog.ID, dog.Name, dog.Breed, dog.birthDate, dog.Gender);
+                Animal animal = animals.ChooseByIndex(i);
+                Console.WriteLine(animal.ToString());
             }
             Console.WriteLine(new string('-', 74));
         }
