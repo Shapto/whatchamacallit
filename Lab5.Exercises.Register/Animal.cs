@@ -35,7 +35,6 @@ namespace Lab5.Exercises.Register
             this.birthDate = birthDate;
             this.Gender = gender;
         }
-        public abstract Animal Clone();
         public override bool Equals(object other)
         {
             return this.ID == ((Animal)other).ID;

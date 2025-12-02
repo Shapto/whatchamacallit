@@ -8,7 +8,7 @@ namespace Lab5.Exercises.Register
 {
     class AnimalContainer
     {
-        private Animal[]animals;
+        private Animal[] animals;
 
         public int Count { get; private set; }
 
@@ -28,7 +28,7 @@ namespace Lab5.Exercises.Register
         {
             for (int i = 0; i < container.Count; i++)
             {
-                this.Add(new Animal(container.Get(i)));
+                var animal = container.Get(i); 
             }
         }
 

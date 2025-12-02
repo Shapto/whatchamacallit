@@ -27,9 +27,5 @@ namespace Lab5.Exercises.Register
                 return LastVaccinationDate.AddYears(VaccinationDuration).CompareTo(DateTime.Now) < 0;
             }
         }
-        public override Animal Clone()
-        {
-            return new Dog(this); // calls the copy constructor
-        }
     }
 }
