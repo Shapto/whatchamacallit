@@ -89,17 +89,17 @@ namespace Lab5.Exercises.Register
         }
         public static void PrintAnimals(string label, AnimalRegister animals)
         {
-            Console.WriteLine(new string('-', 74));
-            Console.WriteLine("| {0,-70} |", label);
-            Console.WriteLine(new string('-', 74));
-            Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-12:yyyy-MM-dd} | {4,-8} | {5,-8} |", "Reg.Nr", "Vardas", "Veislė", "Gimimo data", "Lytis", "Agress.?");
-            Console.WriteLine(new string('-', 74));
+            Console.WriteLine(new string('-', 91));
+            Console.WriteLine("| {0,-87} |", label);
+            Console.WriteLine(new string('-', 91));
+            Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} | {5,-8} |", "Reg.Nr", "Vardas", "Veislė", "Gimimo data", "Lytis", "Agress.?");
+            Console.WriteLine(new string('-', 91));
             for (int i = 0; i < animals.Count(); i++)
             {
                 Animal animal = animals.ChooseByIndex(i);
                 Console.WriteLine(animal.ToString());
             }
-            Console.WriteLine(new string('-', 74));
+            Console.WriteLine(new string('-', 91));
         }
         public static void PrintBreeds(List<string> Breeds)
         {
