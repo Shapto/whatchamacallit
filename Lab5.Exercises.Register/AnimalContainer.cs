@@ -48,9 +48,18 @@ namespace Lab5.Exercises.Register
 
         public void Add(Animal animal)
         {
-            if (this.Count == this.Capacity)//if container is full
+            if (this.Count == this.Capacity)
             {
-                EnsureCapacity(this.Capacity * 2);
+                int newCapacity;
+                if (this.Capacity == 0)
+                {
+                    newCapacity = 1;
+                }
+                else
+                {
+                    newCapacity = this.Capacity * 2;
+                }
+                EnsureCapacity(newCapacity);
             }
             this.animals[this.Count++] = animal;
         }

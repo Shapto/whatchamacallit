@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Konteineriai.Dogs;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.IsolatedStorage;
@@ -38,6 +39,13 @@ namespace Lab5.Exercises.Register
                         if (!Animals.Contains(cat))
                         {
                             Animals.Add(cat);
+                        }
+                        break;
+                    case "GUINEAPIG":
+                        GuineaPig guineaPig = new GuineaPig(id, name, breed, birthDate, gender);
+                        if (!Animals.Contains(guineaPig))
+                        {
+                            Animals.Add(guineaPig);
                         }
                         break;
                     default:

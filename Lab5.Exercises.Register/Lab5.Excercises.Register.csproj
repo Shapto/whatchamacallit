@@ -53,6 +53,7 @@
     <Compile Include="AnimalContainer.cs" />
     <Compile Include="AnimalRegister.cs" />
     <Compile Include="Gender.cs" />
+    <Compile Include="GuineaPig.cs" />
     <Compile Include="InOutUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

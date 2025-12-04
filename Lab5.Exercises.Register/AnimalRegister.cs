@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Konteineriai.Dogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -162,6 +163,7 @@ namespace Lab5.Exercises.Register
                 var animal = AllAnimals.Get(i);
                 if (animal.LastVaccinationDate != animal.LastVaccinationDate.AddYears(1))
                 {
+                    if((animal is GuineaPig) == false)
                     FilteredByVacc.Add(animal);
                 }
             }
