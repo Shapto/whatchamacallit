@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Konteineriai.Dogs
+namespace Lab5.Exercises.Register
 {
     class Vaccination
     {

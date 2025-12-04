@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Konteineriai.Dogs
+namespace Lab5.Exercises.Register
 {
-    enum Gender
+    public enum Gender
     {
         Male = 1,
         Female = 2,
