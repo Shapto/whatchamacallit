@@ -10,7 +10,13 @@ namespace Lab5.Exercises.Register
     {
         public override int Compare(Animal a, Animal b)
         {
-            return a.Name.CompareTo(b.Name);
+            int comparison;
+            comparison = a.birthDate.CompareTo(b.birthDate);
+            if (comparison != 0)
+            {
+                return comparison;
+            }
+            return a.ID.CompareTo(b.ID);
         }
     }
 }

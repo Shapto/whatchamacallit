@@ -10,23 +10,21 @@ namespace Lab5.Exercises.Register
         {
             Console.OutputEncoding = Encoding.UTF8;
             AnimalRegister allAnimals = InOutUtils.ReadDogsRegister(@"Animals.csv");
-            //AnimalContainer allDogs = InOutUtils.ReadAnimals(@"Dogs.csv");
-            //AnimalContainer mainDogs = new AnimalContainer(allDogs);
             Console.WriteLine("Registro informacija: ");
             InOutUtils.PrintAnimals("animals", allAnimals);
-            //allDogs.Sort(new AnimalsComparatorByName());
-            //InOutUtils.PrintAnimals("dogs", allDogs);
+            allAnimals.Sort(new AnimalsComparatorByName());
+            Console.WriteLine("Surikiuota informacija: ");
+            InOutUtils.PrintAnimals("animals", allAnimals);
             List<Vaccination> VaccinationsData = InOutUtils.ReadVaccinations(@"Vaccinations.csv");
             allAnimals.UpdateVaccinationsInfo(VaccinationsData);
-            Console.WriteLine("Surikiuota informacija: ");
-            //InOutUtils.PrintAnimals("dogs", allDogs);
             Console.WriteLine("Iš viso šunų: {0}", allAnimals.Count());
+            Console.WriteLine("Iš viso agresyvių šunų: {0}", allAnimals.CountAggresiveDogs());
             Console.WriteLine("Patinų: {0}", allAnimals.CountByGender(Gender.Male));
             Console.WriteLine("Patelių: {0}", allAnimals.CountByGender(Gender.Female));
             Animal oldest = allAnimals.FindOldestAnimal();
             Console.WriteLine("Seniausias šuo");
             Console.WriteLine("Vardas: {0}, Veislė: {1}, Amžius: {2}", oldest.Name, oldest.Breed, oldest.Age);
-            AnimalContainer FilteredByVacc = allAnimals.FilterByVaccinationExpired();
+            AnimalRegister FilteredByVacc = allAnimals.FilterByVaccinationExpired();
             Console.WriteLine("Šunys su nebegaliuojančiais skiepais:");
             InOutUtils.PrintExpOrUnvaccinatedDogs(FilteredByVacc);
             Console.WriteLine("Šunų veislės: ");
@@ -34,10 +32,14 @@ namespace Lab5.Exercises.Register
             InOutUtils.PrintBreeds(Breeds);
             Console.WriteLine("Kokios veislės šunis atrinkti?");
             string selectedBreed = Console.ReadLine();
-            AnimalContainer filtered = allAnimals.FilterByBreeds(selectedBreed);
-            //InOutUtils.PrintAnimals("filtered", filtered);
-            //string fileName = selectedBreed + ".csv";
-            //InOutUtils.PrintAnimalsToCSVFile(fileName, filtered);
+            AnimalRegister filtered = allAnimals.FilterByBreeds(selectedBreed);
+            InOutUtils.PrintAnimals("filtered", filtered);
+            string fileName = selectedBreed + ".csv";
+            InOutUtils.PrintAnimalsToCSVFile(fileName, filtered);
+            allAnimals.Sort(new AnimalsComparatorByNameAndID());
+            InOutUtils.PrintAnimals("by name and id", allAnimals);
+            allAnimals.Sort(new AnimalsComparatorByBirthdateAndID());
+            InOutUtils.PrintAnimals("by birthdate and id", allAnimals);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Lab5.Exercises.Register
         }
         public override string ToString()
         { 
-            return string.Format("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} | {5,-8} |", ID, Name, Breed, LastVaccinationDate, Gender, Aggresive);
+            return string.Format("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} | {5,-8} |", ID, Name, Breed, birthDate, Gender, Aggresive);
         }
     }
 }

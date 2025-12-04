@@ -138,14 +138,14 @@ namespace Lab5.Exercises.Register
             }
             return Filtered;
         }
-        public AnimalContainer FilterByBreeds(string selectedBreed)
+        public AnimalRegister FilterByBreeds(string selectedBreed)
         {
-            AnimalContainer Filtered = new AnimalContainer();
+            AnimalRegister Filtered = new AnimalRegister();
             for (int i = 0; i < this.AllAnimals.Count; i++)
             {
                 int index = 0;
                 Animal animal = AllAnimals.Get(i);
-                if (animal.Breed.Equals(this.ChooseByIndex(index).Breed))//uses string method equals 
+                if (animal.Breed.Equals(selectedBreed))//uses string method equals 
                 {
                     Filtered.Add(animal);
                 }
@@ -153,13 +153,13 @@ namespace Lab5.Exercises.Register
             }
            return Filtered;
         }
-        public AnimalContainer FilterByVaccinationExpired()
+        public AnimalRegister FilterByVaccinationExpired()
         {
-            AnimalContainer FilteredByVacc = new AnimalContainer();
+            AnimalRegister FilteredByVacc = new AnimalRegister();
             DateTime temp = DateTime.MinValue;
             for (int i = 0; i < this.AllAnimals.Count; i++)
             {
-                Animal animal = AllAnimals.Get(i);
+                var animal = AllAnimals.Get(i);
                 if (animal.LastVaccinationDate != animal.LastVaccinationDate.AddYears(1))
                 {
                     FilteredByVacc.Add(animal);
