@@ -92,15 +92,15 @@ namespace Lab5.Exercises.Register
         }
         public static void PrintExpOrUnvaccinatedDogs(AnimalRegister FilteredByVacc)
         {
-            Console.WriteLine(new string('-', 90));
+            Console.WriteLine(new string('-', 80));
             Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} |", "Reg.Nr", "Vardas", "Veislė", "Pask. Skiepo data", "Lytis");
-            Console.WriteLine(new string('-', 90));
+            Console.WriteLine(new string('-', 80));
             for (int i = 0; i < FilteredByVacc.Count(); i++)
             {
                 Animal animal = FilteredByVacc.ChooseByIndex(i);
                 Console.WriteLine("| {0,8} | {1,-15} | {2,-15} | {3,-18:yyyy-MM-dd} | {4,-8} |", animal.ID, animal.Name, animal.Breed, animal.LastVaccinationDate, animal.Gender);
             }
-            Console.WriteLine(new string('-', 90));
+            Console.WriteLine(new string('-', 80));
         }
         public static void PrintAnimalsToCSVFile(string fileName, AnimalRegister animals)
         {
